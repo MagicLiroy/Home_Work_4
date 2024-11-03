@@ -11,45 +11,50 @@ namespace Task_3
         static void Main(string[] args)
         {
             Console.WriteLine("Введите длину прямоугольника: ");
-            int lenght = int.Parse(Console.ReadLine());
+            float lenght = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Введите ширину прямоугольника: ");
-            int width = int.Parse(Console.ReadLine());
+            float width = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Введите значение сторон квадрата прямоугольника: ");
-            int side = int.Parse(Console.ReadLine());
+            float sideSquare = float.Parse(Console.ReadLine());
 
-            bool sizeComparison = lenght >= side && width >= side;
-
-            int squareCounter = 0;
-
-            int squares = 0;
-
-            if (sizeComparison)
+            if (sideSquare >= width || sideSquare >= lenght)
             {
-                while (true)
-                {
-                    squares += side;
+                float squareRectangle = 0;
 
-                    if (width + lenght - squares >= side)
-                    {
-                        squareCounter += 1;
-                        continue;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                while (width > 0)
+                {
+                    squareRectangle += lenght;
+                    width -= 1;
                 }
 
-                Console.WriteLine($"В прямоугольник поместиться квадратов: {squareCounter} ");
+                float areaSquare = 0;
+
+                float squareAreaCounter = sideSquare;
+
+                while (squareAreaCounter > 0)
+                {
+                    areaSquare += sideSquare;
+                    squareAreaCounter -= 1;
+                }
+
+                int counterSquares = 0;
+                float occupiedArea = squareRectangle;
+
+                while (occupiedArea >= areaSquare)
+                {
+                    occupiedArea -= areaSquare;
+                    counterSquares += 1;
+                }
+
+                Console.WriteLine($"Количество квадратов, которое поместиться в прямоугольник: {counterSquares}");
+
             }
-            else
-                {
-                    Console.WriteLine("Квадрат не помещается в прямоугольик");
-                }
+            else { Console.WriteLine("Квадрат не поместиться в прямоугольник"); }
 
             Console.ReadKey();
+            
         }
     }
 }
